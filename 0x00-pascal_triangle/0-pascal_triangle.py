@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""
-pascal triangle module
-"""
+"""pascal triangle module"""
 if __name__ == "__main__":
 
     def pascal_triangle(n):
+        """function of pascal triangle"""
         if n <= 0:
             return 0
         triangle = [[1]]
