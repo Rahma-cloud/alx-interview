@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""pascal triangle module"""
 if __name__ == "__main__":
 
     def pascal_triangle(n):
