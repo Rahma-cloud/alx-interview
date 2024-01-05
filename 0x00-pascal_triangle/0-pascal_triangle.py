@@ -7,6 +7,12 @@
 def pascal_triangle(n):
     """
     pascal_triangle function
+    Parameters:
+    n (int): The number of rows for Pascal's triangle.
+
+    Returns:
+    list of lists: A list of lists representing Pascal's triangle.
+    Each inner list corresponds to a row in the triangle.
     """
     my_list = []
     if n <= 0:
