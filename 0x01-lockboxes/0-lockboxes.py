@@ -1,26 +1,24 @@
 #!/usr/bin/python3
-"""
-12-pascal_triangle Module
-"""
+"""Lockboxes Module"""
 
 
 def canUnlockAll(boxes):
-    """
-    pascal_triangle function
-    Parameters:
-    n (int): The number of rows for Pascal's triangle.
+    """canUnlockAll() method"""
+    if not boxes or len(boxes) == 1:
+        return True
 
-    Returns:
-    list of lists: A list of lists representing Pascal's triangle.
-    Each inner list corresponds to a row in the triangle.
-    """
-    unlockedBoxes = {0}
-    keysToCheck = [0]
+    num_boxes = len(boxes)
+    visited = [False] * num_boxes
+    visited[0] = True
+    queue = [0]
 
-    while keysToCheck:
-        currentBox = keysToCheck.pop()
-        for key in boxes[currentBox]:
-            if key not in unlockedBoxes:
-                unlockedBoxes.add(key)
-                keysToCheck.append(key)
-    return len(unlockedBoxes) == len(boxes)
+    while queue:
+        current_box = queue.pop(0)
+        keys = boxes[current_box]
+
+        for key in keys:
+            if 0 <= key < num_boxes and not visited[key]:
+                visited[key] = True
+                queue.append(key)
+
+    return all(visited) ⁠
