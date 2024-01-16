@@ -1,4 +1,11 @@
+#!/usr/bin/python3
+"""
+minimum operation
+"""
+
+
 def minOperations(n):
+    """function declaration"""
     if n <= 1:
         return 0
 
