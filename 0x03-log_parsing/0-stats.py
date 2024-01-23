@@ -1,15 +1,20 @@
 #!/usr/bin/python3
+"""
+Log parse
+"""
 import sys
 from collections import defaultdict
 
 
 def print_stats(total_size, status_code_count):
+    """ This function prints out stats """
     print("File size: {}".format(total_size))
     for code in sorted(status_code_count):
         print("{}: {}".format(code, status_code_count[code]))
 
 
 def parse_line(line):
+    """ This function seperates the line """
     try:
         parts = line.split()
         ip_address = parts[0]
@@ -21,6 +26,7 @@ def parse_line(line):
 
 
 def main():
+    """ This finction stores the 2 functions above's output """
     total_size = 0
     status_code_count = defaultdict(int)
     line_count = 0
