@@ -2,10 +2,12 @@
 import sys
 from collections import defaultdict
 
+
 def print_stats(total_size, status_code_count):
     print("File size: {}".format(total_size))
     for code in sorted(status_code_count):
         print("{}: {}".format(code, status_code_count[code]))
+
 
 def parse_line(line):
     try:
@@ -16,6 +18,7 @@ def parse_line(line):
         return ip_address, status_code, file_size
     except (ValueError, IndexError):
         return None, None, None
+
 
 def main():
     total_size = 0
@@ -40,6 +43,7 @@ def main():
 
     finally:
         print_stats(total_size, status_code_count)
+
 
 if __name__ == "__main__":
     main()
