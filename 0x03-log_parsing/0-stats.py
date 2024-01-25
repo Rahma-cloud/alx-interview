@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Log parse 
+Log parse
 """
 import sys
 from collections import defaultdict
