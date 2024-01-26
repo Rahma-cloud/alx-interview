@@ -48,4 +48,4 @@ try:
     print_statistics()
 
 except KeyboardInterrupt:
-    print_statistics() ⁠
+    print_statistics()
