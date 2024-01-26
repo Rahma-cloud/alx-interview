@@ -1,55 +1,51 @@
 #!/usr/bin/python3
-"""
-Log parse
-"""
-import sys
-from collections import defaultdict
+""" A script that reads stdin line by line and computes metrics """
+
+from sys import stdin
+
+status_dict = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+total_file_size = 0
+line_count = 0
 
 
-def print_stats(total_size, status_code_count):
-    """ This function prints out stats """
-    print("File size: {}".format(total_size))
-    for code in sorted(status_code_count):
-        print("{}: {}".format(code, status_code_count[code]))
+def print_statistics():
+    """ This function computed statistics """
+    print("File size:", total_file_size)
+    for key, value in status_dict.items():
+        if value:
+            print("{}: {}".format(key, value))
 
 
 def parse_line(line):
-    """ This function seperates the line """
+    """ This function checks each line """
+    global total_file_size, line_count
+
+    line_count += 1
+    parts = line.split()
+
     try:
-        parts = line.split()
-        ip_address = parts[0]
-        status_code = int(parts[-2])
         file_size = int(parts[-1])
-        return ip_address, status_code, file_size
-    except (ValueError, IndexError):
-        return None, None, None
-
-
-def main():
-    """ This finction stores the 2 functions above's output """
-    total_size = 0
-    status_code_count = defaultdict(int)
-    line_count = 0
+        total_file_size += file_size
+    except (IndexError, ValueError, TypeError):
+        return
 
     try:
-        for line in sys.stdin:
-            line = line.strip()
-            ip_address, status_code, file_size = parse_line(line)
+        status_code = int(parts[-2])
+        if status_code in status_dict:
+            status_dict[status_code] += 1
+    except (IndexError, ValueError, TypeError):
+        return
 
-            if ip_address is not None:
-                total_size += file_size
-                status_code_count[status_code] += 1
-                line_count += 1
-
-            if line_count % 10 == 0:
-                print_stats(total_size, status_code_count)
-
-    except KeyboardInterrupt:
-        pass  # Handle Ctrl+C
-
-    finally:
-        print_stats(total_size, status_code_count)
+    if line_count == 10:
+        print_statistics()
+        line_count = 0
 
 
-if __name__ == "__main__":
-    main()
+try:
+    for line in stdin:
+        parse_line(line.strip())
+
+    print_statistics()
+
+except KeyboardInterrupt:
+    print_statistics() ⁠
