@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 def is_safe(board, row, col, n):
-    # Check if there is a queen in the same column
+    """ This function checks if there is a queen in the same column """
     for i in range(row):
         if board[i] == col or \
            board[i] - i == col - row or \
@@ -10,6 +10,7 @@ def is_safe(board, row, col, n):
     return True
 
 def solve_nqueens(board, row, n, solutions):
+    """This function checks the location of the queen on the board and stores it """
     if row == n:
         solutions.append([[i, board[i]] for i in range(n)])
         return
@@ -20,10 +21,12 @@ def solve_nqueens(board, row, n, solutions):
             solve_nqueens(board, row + 1, n, solutions)
 
 def print_solutions(solutions):
+    """ This function prints the solution in array form """
     for solution in solutions:
         print(solution)
 
 def nqueens(n):
+    """ This checks the value of n input """
     if not isinstance(n, int):
         print("N must be a number")
         exit(1)
@@ -38,6 +41,7 @@ def nqueens(n):
     print_solutions(solutions)
 
 if __name__ == "__main__":
+    """ checks the number of argument passed """
     import sys
 
     if len(sys.argv) != 2:
