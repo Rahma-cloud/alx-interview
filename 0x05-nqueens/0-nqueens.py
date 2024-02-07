@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+shebang
+"""
+
 
 def is_safe(board, row, col, n):
     """ This function checks if there is a queen in the same column """
@@ -45,7 +49,6 @@ def nqueens(n):
 
 
 if __name__ == "__main__":
-    """ checks the number of argument passed """
     import sys
 
     if len(sys.argv) != 2:
