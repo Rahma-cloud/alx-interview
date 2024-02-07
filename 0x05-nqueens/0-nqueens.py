@@ -9,8 +9,9 @@ def is_safe(board, row, col, n):
             return False
     return True
 
+
 def solve_nqueens(board, row, n, solutions):
-    """This function checks the location of the queen on the board and stores it """
+    """ checks the location of the queen on the board and stores it """
     if row == n:
         solutions.append([[i, board[i]] for i in range(n)])
         return
@@ -20,10 +21,12 @@ def solve_nqueens(board, row, n, solutions):
             board[row] = col
             solve_nqueens(board, row + 1, n, solutions)
 
+
 def print_solutions(solutions):
     """ This function prints the solution in array form """
     for solution in solutions:
         print(solution)
+
 
 def nqueens(n):
     """ This checks the value of n input """
@@ -40,17 +43,13 @@ def nqueens(n):
     solve_nqueens(board, 0, n, solutions)
     print_solutions(solutions)
 
+
 if __name__ == "__main__":
     """ checks the number of argument passed """
-    import sys
+    import argparse
 
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        exit(1)
+    parser = argparse.ArgumentParser(description="Solve the N-Queens problem")
+    parser.add_argument("N", type=int, help="Size of the chessboard (N x N)")
+    args = parser.parse_args()
 
-    try:
-        N = int(sys.argv[1])
-        nqueens(N)
-    except ValueError:
-        print("N must be a number")
-        exit(1)
+    nqueens(args.N)
