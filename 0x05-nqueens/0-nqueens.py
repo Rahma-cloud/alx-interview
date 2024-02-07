@@ -46,10 +46,15 @@ def nqueens(n):
 
 if __name__ == "__main__":
     """ checks the number of argument passed """
-    import argparse
+    import sys
 
-    parser = argparse.ArgumentParser(description="Solve the N-Queens problem")
-    parser.add_argument("N", type=int, help="Size of the chessboard (N x N)")
-    args = parser.parse_args()
+    if len(sys.argv) != 2:
+        print("Usage: {} N".format(sys.argv[0]))
+        exit(1)
 
-    nqueens(args.N)
+    try:
+        N = int(sys.argv[1])
+        nqueens(N)
+    except ValueError:
+        print("N must be a number")
+        exit(1)
