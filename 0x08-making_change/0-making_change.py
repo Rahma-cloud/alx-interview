@@ -1,4 +1,10 @@
+#!/usr/bin/python3
+"""This is to make a change
+"""
+
+
 def makeChange(coins, total):
+    """function with 2 arguments"""
     if total <= 0:
         return 0
 
