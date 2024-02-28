@@ -4,14 +4,16 @@
 
 
 def makeChange(coins, total):
-    """function with 2 arguments"""
+    """ function with two argument """
     if total <= 0:
         return 0
+    temp_value = 0
+    
+    coins.sort(reverse=True)
 
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
     for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+        while total >= coin:
+            total -= coin
+            temp_value += 1
 
-    return dp[total] if dp[total] != float('inf') else -1
+    return temp_value if total == 0 else -1
