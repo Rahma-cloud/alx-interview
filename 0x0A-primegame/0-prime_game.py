@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Primegame Task """
 
-
 def isWinner(x, nums):
     """ This function stores the winner """
     def is_prime(num):
@@ -13,24 +12,22 @@ def isWinner(x, nums):
                 return False
         return True
 
-    def get_primes_up_to_n(n):
-        primes = []
-        for i in range(2, n + 1):
-            if is_prime(i):
-                primes.append(i)
-        return primes
+    primes_cache = {}
 
-    def calculate_winner(primes, n):
-        """ Count the number of primes less than or equal to n """
-        count = sum(1 for prime in primes if prime <= n)
-        return "Maria" if count % 2 != 0 else "Ben"
+    def get_primes_up_to_n(n):
+        """ Get primes up to n using memoization """
+        if n in primes_cache:
+            return primes_cache[n]
+        primes = [i for i in range(2, n + 1) if is_prime(i)]
+        primes_cache[n] = primes
+        return primes
 
     winners = []
 
-    for round_num in range(x):
-        n = nums[round_num]
+    for n in nums:
         primes = get_primes_up_to_n(n)
-        winner = calculate_winner(primes, n)
+        count = sum(1 for prime in primes if prime <= n)
+        winner = "Maria" if count % 2 != 0 else "Ben"
         winners.append(winner)
 
     maria_wins = winners.count("Maria")
