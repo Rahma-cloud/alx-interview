@@ -14,6 +14,7 @@ def isWinner(x, nums):
         return True
 
     def get_primes_up_to_n(n):
+        """ gets the prime numbers """
         primes = []
         for i in range(2, n + 1):
             if is_prime(i):
